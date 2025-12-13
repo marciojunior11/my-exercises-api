@@ -4,8 +4,8 @@ import { Request, Response } from "express";
 const service = new GrupoMuscularService();
 
 export default class GrupoMuscularController {
-    public getGruposMusculares = async (req: Request, res: Response) => {
-        const gruposMusculares = await service.getGruposMusculares();
+    getGruposMusculares = async (req: Request, res: Response) => {
+        const gruposMusculares = await service.findMany();
 
         return res.json(gruposMusculares);
     };

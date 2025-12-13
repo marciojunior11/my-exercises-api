@@ -1,10 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import { IEquipamento } from "@/models/equipamento.model";
+import { Repository } from "./repository";
 
-export default class EquipamentoService {
-    public getEquipamentos = async (): Promise<IEquipamento[]> => {
-        const equipamentos = (await prisma.equipamento.findMany()).map(u => ({ id: u.id, nome: u.nome }));
-
-        return equipamentos;
-    };
+export default class EquipamentoService extends Repository<typeof prisma.equipamento> {
+    constructor() {
+        super(prisma.equipamento);
+    }
 }

@@ -24,7 +24,20 @@ model GrupoMuscular {
   id   Int    @id @default(autoincrement()) @map("id")
   nome String @map("nome") @db.VarChar(255)
 
+  SubGruposMusculares SubGrupoMuscular[]
+
   @@map("tb_grupos_musculares")
+}
+
+model SubGrupoMuscular {
+  id   Int    @id @default(autoincrement()) @map("id")
+  nome String @map("nome") @db.VarChar(255)
+
+  idGrupoMuscular Int @map("idgrupomuscular")
+
+  GrupoMuscular GrupoMuscular @relation(fields: [idGrupoMuscular], references: [id])
+
+  @@map("tb_sub_grupos_musculares")
 }
 
 model Modalidade {

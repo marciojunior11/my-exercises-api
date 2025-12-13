@@ -4,8 +4,8 @@ import { Request, Response } from "express";
 const service = new ModalidadeService();
 
 export default class ModalidadeController {
-    public getModalidades = async (req: Request, res: Response) => {
-        const modalidades = await service.getModalidades();
+    getModalidades = async (req: Request, res: Response) => {
+        const modalidades = await service.findMany();
 
         return res.json(modalidades);
     };
