@@ -23,21 +23,32 @@ export default class EquipamentoController {
     };
 
     updateEquipamento = async (req: Request, res: Response) => {
+        const { id } = req.params;
         const data: IEquipamento = req.body;
+
+        const bean = await service.findUnique({ where: { id: Number(id) } });
+
+        if (!!!bean)
+            return res.status(404).json({ message: "Equipamento não encontrado" });
 
         const result = await service.update({
             data: { nome: data.nome },
-            where: { id: data.id }
+            where: { id: Number(id) }
         });
 
         return res.json(result);
     };
 
     deleteEquipamento = async (req: Request, res: Response) => {
-        const id = req.body;
+        const { id } = req.params;
+
+        const bean = await service.findUnique({ where: { id: Number(id) } });
+
+        if (!!!bean)
+            return res.status(404).json({ message: "Equipamento não encontrado" });
 
         const result = await service.delete({
-            where: { id: id }
+            where: { id: Number(id) },
         });
 
         return res.json(result);
