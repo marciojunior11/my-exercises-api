@@ -1,4 +1,4 @@
-import { IGrupoMuscular } from "./grupo-muscular.model";
+import { IGrupoMuscular } from "./grupo-muscular.models";
 
 export interface ISubGrupoMuscular {
     id?: number;
