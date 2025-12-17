@@ -1,13 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { IEquipamento } from "@/models/equipamento.model";
-import EquipamentoService from "@/services/equipamento.service";
+import EquipamentoRepository from "@/repositories/equipamento.repository";
 import { Request, Response } from "express";
 
-const service = new EquipamentoService();
+const repository = new EquipamentoRepository();
 
 export default class EquipamentoController {
     getEquipamentos = async (req: Request, res: Response) => {
-        const equipamentos = await service.findMany();
+        const equipamentos = await repository.findMany();
 
         return res.json(equipamentos);
     };
@@ -15,7 +15,7 @@ export default class EquipamentoController {
     createEquipamento = async (req: Request, res: Response) => {
         const data: IEquipamento = req.body;
 
-        const result = await service.create({
+        const result = await repository.create({
             data: { nome: data.nome }
         });
 
@@ -26,12 +26,12 @@ export default class EquipamentoController {
         const { id } = req.params;
         const data: IEquipamento = req.body;
 
-        const bean = await service.findUnique({ where: { id: Number(id) } });
+        const bean = await repository.findUnique({ where: { id: Number(id) } });
 
         if (!!!bean)
             return res.status(404).json({ message: "Equipamento não encontrado" });
 
-        const result = await service.update({
+        const result = await repository.update({
             data: { nome: data.nome },
             where: { id: Number(id) }
         });
@@ -42,12 +42,12 @@ export default class EquipamentoController {
     deleteEquipamento = async (req: Request, res: Response) => {
         const { id } = req.params;
 
-        const bean = await service.findUnique({ where: { id: Number(id) } });
+        const bean = await repository.findUnique({ where: { id: Number(id) } });
 
         if (!!!bean)
             return res.status(404).json({ message: "Equipamento não encontrado" });
 
-        const result = await service.delete({
+        const result = await repository.delete({
             where: { id: Number(id) },
         });
 

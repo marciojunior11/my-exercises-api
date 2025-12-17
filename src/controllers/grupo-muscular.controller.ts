@@ -1,11 +1,11 @@
-import GrupoMuscularService from "@/services/grupo-muscular.service";
+import GrupoMuscularRepository from "@/repositories/grupo-muscular.repository";
 import { Request, Response } from "express";
 
-const service = new GrupoMuscularService();
+const repository = new GrupoMuscularRepository();
 
 export default class GrupoMuscularController {
     getGruposMusculares = async (req: Request, res: Response) => {
-        const gruposMusculares = await service.findMany();
+        const gruposMusculares = await repository.findMany();
 
         return res.json(gruposMusculares);
     };

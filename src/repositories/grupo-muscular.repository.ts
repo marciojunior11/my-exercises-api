@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Repository } from "./repository";
 
-export default class GrupoMuscularService extends Repository<typeof prisma.grupoMuscular> {
+export default class GrupoMuscularRepository extends Repository<typeof prisma.grupoMuscular> {
     constructor() {
         super(prisma.grupoMuscular);
     }
