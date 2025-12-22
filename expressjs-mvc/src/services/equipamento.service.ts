@@ -1,6 +1,6 @@
 import APIError from "@/errors/api-error";
 import { IEquipamento } from "@/models/equipamento.models";
-import EquipamentoRepository from "@/repositories/equipamento.repository";
+import { EquipamentoRepository } from "@/repositories";
 
 const repository = new EquipamentoRepository();
 

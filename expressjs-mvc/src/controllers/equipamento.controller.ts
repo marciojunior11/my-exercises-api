@@ -6,7 +6,7 @@ import { Request, Response } from "express";
 
 const service = new EquipamentoService();
 
-export default class EquipamentoController {
+export class EquipamentoController {
     getEquipamentos = async (req: Request, res: Response) => {
         try {
             const equipamentos = await service.getEquipamentos();

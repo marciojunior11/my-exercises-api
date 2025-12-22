@@ -1,9 +1,9 @@
-import ModalidadeRepository from "@/repositories/modalidade.repository";
+import { ModalidadeRepository } from "@/repositories";
 import { Request, Response } from "express";
 
 const repository = new ModalidadeRepository();
 
-export default class ModalidadeController {
+export class ModalidadeController {
     getModalidades = async (req: Request, res: Response) => {
         const modalidades = await repository.findMany();
 

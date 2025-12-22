@@ -1,9 +1,9 @@
-import SubGrupoMuscularRepository from "@/repositories/sub-grupo-muscular.repository";
+import { SubGrupoMuscularRepository } from "@/repositories";
 import { Request, Response } from "express"
 
 const repository = new SubGrupoMuscularRepository();
 
-export default class SubGrupoMuscularController {
+export class SubGrupoMuscularController {
     getSubGruposMusculares = async (req: Request, res: Response) => {
         const subGruposMusculares = await repository.findMany({
             include: {

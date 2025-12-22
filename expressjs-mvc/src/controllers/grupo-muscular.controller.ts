@@ -1,9 +1,9 @@
-import GrupoMuscularRepository from "@/repositories/grupo-muscular.repository";
+import { GrupoMuscularRepository } from "@/repositories";
 import { Request, Response } from "express";
 
 const repository = new GrupoMuscularRepository();
 
-export default class GrupoMuscularController {
+export class GrupoMuscularController {
     getGruposMusculares = async (req: Request, res: Response) => {
         const gruposMusculares = await repository.findMany();
 
