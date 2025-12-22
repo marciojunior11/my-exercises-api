@@ -1,4 +1,5 @@
 import APIError from "@/errors/api-error";
+import NotFoundError from "@/errors/not-found-error";
 import { IEquipamento } from "@/models/equipamento.models";
 import { EquipamentoRepository } from "@/repositories";
 
@@ -23,7 +24,7 @@ export default class EquipamentoService {
         const bean = await repository.findUnique({ where: { id: data.id } });
 
         if (!!!bean)
-            throw new APIError("Equipamento não encontrado.", 404);
+            throw new NotFoundError("Equipamento não encontrado.");
 
         const result = await repository.update({
             data: { nome: data.nome },
@@ -37,7 +38,7 @@ export default class EquipamentoService {
         const bean = await repository.findUnique({ where: { id: id } });
 
         if (!!!bean)
-            throw new APIError("Equipamento não encontrado.", 404);
+            throw new NotFoundError("Equipamento não encontrado.");
 
         const result = await repository.delete({
             where: { id: id },
