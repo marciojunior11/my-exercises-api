@@ -28,7 +28,7 @@ export const RegisterRoutes = () => {
 };
 
 export const StartServer = () => app.listen(3000, () => {
-    console.log("ESCUTANDO NA PORTA 3000!");
+    console.info("ESCUTANDO NA PORTA 3000!");
 
     return app;
 });
