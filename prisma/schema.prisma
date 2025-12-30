@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TipoSubGrupoMuscular {
+  AGONISTA
+  ANTAGONISTA
+  SINERGISTA
+}
+
+model Equipamento {
+  id   Int    @id @default(autoincrement()) @map("id")
+  nome String @map("nome") @db.VarChar(255)
+
+  @@map("tb_equipamentos")
+}
+
+model GrupoMuscular {
+  id   Int    @id @default(autoincrement()) @map("id")
+  nome String @map("nome") @db.VarChar(255)
+
+  SubGruposMusculares SubGrupoMuscular[]
+
+  @@map("tb_grupos_musculares")
+}
+
+model SubGrupoMuscular {
+  id   Int    @id @default(autoincrement()) @map("id")
+  nome String @map("nome") @db.VarChar(255)
+
+  idGrupoMuscular Int @map("idgrupomuscular")
+
+  GrupoMuscular GrupoMuscular               @relation(fields: [idGrupoMuscular], references: [id])
+  Exercicios    ExercicioSubGrupoMuscular[]
+
+  @@map("tb_sub_grupos_musculares")
+}
+
+model Modalidade {
+  id   Int    @id @default(autoincrement()) @map("id")
+  nome String @map("nome") @db.VarChar(255)
+
+  Exercicios ExercicioModalidade[]
+
+  @@map("tb_modalidades")
+}
+
+model Exercicio {
+  id   Int    @id @default(autoincrement()) @map("id")
+  nome String @map("nome") @db.VarChar(255)
+
+  SubGruposMusculares ExercicioSubGrupoMuscular[]
+  Modalidades         ExercicioModalidade[]
+
+  @@map("tb_exercicios")
+}
+
+model ExercicioSubGrupoMuscular {
+  idExercicio        Int @map("idexercicio")
+  idSubGrupoMuscular Int @map("idsubgrupomuscular")
+  tipo TipoSubGrupoMuscular @map("tipo")
+
+  Exercicio        Exercicio        @relation(fields: [idExercicio], references: [id])
+  SubGrupoMuscular SubGrupoMuscular @relation(fields: [idSubGrupoMuscular], references: [id])
+
+  @@id([idExercicio, idSubGrupoMuscular])
+  @@map("tb_exercicios_sub_grupos_musculares")
+}
+
+model ExercicioModalidade {
+  idExercicio  Int @map("idexercicio")
+  idModalidade Int @map("idmodalidade")
+
+  Exercicio  Exercicio  @relation(fields: [idExercicio], references: [id])
+  Modalidade Modalidade @relation(fields: [idModalidade], references: [id])
+
+  @@id([idExercicio, idModalidade])
+  @@map("tb_exercicios_modalidades")
+}
