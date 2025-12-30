@@ -1,10 +1,10 @@
 import express from "express";
-import { registerRoutes } from "./routes";
+import { CreateEquipamentoRouter } from "./use-cases/create-equipamento/router";
 
 const app = express();
 
 app.use(express.json());
 
-registerRoutes(app);
+app.use("/api", CreateEquipamentoRouter);
 
 export { app };
