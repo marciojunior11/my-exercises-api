@@ -5,7 +5,7 @@ import { inject, injectable } from "tsyringe";
 import { Validate } from "./validator";
 
 @injectable()
-class CreateEquipamentoUseCase {
+export class CreateEquipamentoUseCase {
     constructor(
         @inject("EquipamentoRepository")
         private repository: IEquipamentoRepository
@@ -23,5 +23,3 @@ class CreateEquipamentoUseCase {
         return result;
     };
 }
-
-export { CreateEquipamentoUseCase };

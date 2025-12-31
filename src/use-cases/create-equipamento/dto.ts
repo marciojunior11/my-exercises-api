@@ -1,6 +1,4 @@
-interface ICreateEquipamentoDTO {
+export interface ICreateEquipamentoDTO {
     id?: number;
     nome: string;
 }
-
-export { ICreateEquipamentoDTO };

@@ -3,7 +3,7 @@ import { CreateEquipamentoUseCase } from "./use-case";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
-class CreateEquipamentoController {
+export class CreateEquipamentoController {
     constructor(
         @inject("CreateEquipamentoUseCase")
         private useCase: CreateEquipamentoUseCase
@@ -16,8 +16,9 @@ class CreateEquipamentoController {
             nome
         });
 
-        return res.json(result);
-    }
+        res.json({
+            success: true,
+            data: result
+        });
+    };
 }
-
-export { CreateEquipamentoController };

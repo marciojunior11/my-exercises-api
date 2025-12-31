@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { injectable } from "tsyringe";
 
 @injectable()
-class PrismaEquipamentoRepository implements IEquipamentoRepository {
+export class PrismaEquipamentoRepository implements IEquipamentoRepository {
     public async create(equipamento: Equipamento): Promise<Equipamento> {
         const prismaResult = await prisma.equipamento.create({
             data: {
@@ -62,5 +62,3 @@ class PrismaEquipamentoRepository implements IEquipamentoRepository {
         return result;
     }
 }
-
-export { PrismaEquipamentoRepository };

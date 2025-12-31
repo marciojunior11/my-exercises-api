@@ -1,9 +1,8 @@
+import { ValidationError } from "@/errors/validation-error";
 import { ICreateEquipamentoDTO } from "./dto";
 
-const Validate = (data: ICreateEquipamentoDTO) => {
+export const Validate = (data: ICreateEquipamentoDTO) => {
     if (!data.nome || data.nome.trim().length === 0) {
-        throw new Error("Nome do equipamento é obrigatório.");
+        throw new ValidationError("Nome do equipamento é obrigatório.");
     }
 };
-
-export { Validate };
