@@ -5,7 +5,7 @@ import { inject, injectable } from "tsyringe";
 @injectable()
 class CreateEquipamentoController {
     constructor(
-        @inject(CreateEquipamentoUseCase)
+        @inject("CreateEquipamentoUseCase")
         private useCase: CreateEquipamentoUseCase
     ) { }
 
