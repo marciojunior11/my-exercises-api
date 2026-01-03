@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { container } from "lib/tsyringe";
+import { container } from "@/lib/tsyringe";
 import { CreateEquipamentoController } from "./controller";
 
 const router = Router();

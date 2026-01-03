@@ -40,6 +40,9 @@ export class PrismaEquipamentoRepository implements IEquipamentoRepository {
             where: { id: id }
         });
 
+        if (!prismaResult)
+            return null;
+
         const result = new Equipamento({
             nome: prismaResult?.nome
         }, prismaResult?.id);

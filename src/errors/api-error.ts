@@ -1,6 +1,6 @@
 import { ErrorCode } from "./types";
 
-class APIError<C extends ErrorCode> extends Error {
+export class APIError<C extends ErrorCode> extends Error {
     statusCode: number;
     errorCode?: C;
 
@@ -22,7 +22,4 @@ class APIError<C extends ErrorCode> extends Error {
             }
         }
     }
-
 }
-
-export { APIError };

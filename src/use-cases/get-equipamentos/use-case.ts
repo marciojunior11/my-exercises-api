@@ -6,11 +6,11 @@ import { IGetEquipamentosDTO } from "./dto";
 export class GetEquipamentosUseCase {
     constructor(
         @inject("EquipamentoRepository")
-        private equipamentoRepository: IEquipamentoRepository
+        private repository: IEquipamentoRepository
     ) { }
 
     public async execute(filtros: IGetEquipamentosDTO) {
-        let equipamentos = await this.equipamentoRepository.findAll();
+        let equipamentos = await this.repository.findAll();
 
         if (!equipamentos || equipamentos.length === 0) {
             return [];
